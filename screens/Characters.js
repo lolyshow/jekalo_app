@@ -10,7 +10,7 @@ import {
   Alert,
 } from "react-native";
 
-import ProductCard from "./components/ProductCard";
+import CardComponent from "./components/CardComponent";
 import Network from "./Helpers/Network";
 import Config from "./Helpers/Config";
 
@@ -158,7 +158,7 @@ class Characters extends React.Component {
               margin: 20,
             }}
           >
-            <ProductCard
+            <CardComponent
               key={item.id}
               name={item.name}
               onPressButton= {this.onPressButton.bind(this, item.id)}

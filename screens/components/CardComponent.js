@@ -7,17 +7,13 @@ import {
 
 } from "react-native";
 
-class Productcard extends Component {
+class CardComponent extends Component {
   constructor(props) {
     super(props);
   }
   render() {
     
     const img = this.props.image && this.props.image!="undefined"? this.props.image: "../assets/images/laptop2.jpeg";
-    // const images =
-    //   this.props.image && this.props.image.length > 0
-    //     ? this.props.image[0].url
-    //     : "../assets/images/laptop2.jpeg";
     let image = { uri: img };
     return (
       <View>
@@ -58,4 +54,4 @@ class Productcard extends Component {
     );
   }
 }
-export default Productcard;
+export default CardComponent;
