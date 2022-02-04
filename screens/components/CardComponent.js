@@ -16,22 +16,11 @@ class CardComponent extends Component {
     const img = this.props.image && this.props.image!="undefined"? this.props.image: "../assets/images/laptop2.jpeg";
     let image = { uri: img };
     return (
-      <View>
+      <View key = {this.props.key}>
         <View
-          style={{
-            backgroundColor: "#f5f5f5",
-            // marginLeft: 0,
-            // margin: 10,
-            padding:10,
-            borderRadius: 10,
-            marginBottom: 0,
-            height: 290,
-            width: 300,
+          style={{backgroundColor: "#f5f5f5",padding:10,borderRadius: 10,marginBottom: 0,height: 290,width: 300,
           }}
         >
-          <View style={{ justifyContent: "flex-end", flexDirection: "row" }}>
-           
-          </View>
           <View style={{ justifyContent: "center", alignItems: "center" }}>
             <TouchableHighlight
               onPress={this.props.onPressButton}
@@ -45,10 +34,22 @@ class CardComponent extends Component {
         <View style={{ marginTop:10, justifyContent:'center',alignContent:'center' }}>
           
             
+          <Text>
+                <Text style={{fontWeight: "bold"}}>Name:</Text>
+          <Text></Text>{this.props.name}</Text>
           
-          <Text style={{ }}>Name: {this.props.name} </Text>
-          <Text>Status: {this.props.status}</Text>
-          <Text>Category: {this.props.category}</Text>
+          <Text>
+                <Text style={{fontWeight: "bold"}}>Status:</Text>
+          <Text></Text>{this.props.status}</Text>
+
+          <Text>
+                <Text style={{fontWeight: "bold"}}>Category:</Text>
+          <Text></Text>{this.props.category}</Text>
+
+          <Text>
+                <Text style={{fontWeight: "bold"}}>Series:</Text>
+          <Text></Text>{this.props.series}</Text>
+          
         </View>
       </View>
     );

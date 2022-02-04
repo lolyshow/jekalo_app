@@ -22,7 +22,7 @@ class ListComp extends Component {
         : characters = "nill";
     
     return (
-      <View>
+      <View key = {this.props.key}>
         <View style={{backgroundColor: "#ffffff",borderRadius: 10, padding:10,height: 150,width: 300,
           }}
         >

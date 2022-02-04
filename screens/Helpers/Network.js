@@ -1,22 +1,3 @@
-// var axios = require('axios');
-
-// var config = {
-//   method: 'get',
-//   url: 'https://breakingbadapi.com/api/characters/10',
-//   headers: { }
-// };
-
-// axios(config)
-// .then(function (response) {
-//   console.log(JSON.stringify(response.data));
-// })
-// .catch(function (error) {
-//   console.log(error);
-// });
-
-
-
-
 import axios from "axios";
 class Network {
   getPropValue = (object, path = "") =>
@@ -35,15 +16,14 @@ class Network {
 
         let responseObject = await axios(config)
         .then((response) => response);
-        // console.log("This IS ResponseFromNetwork",JSON.stringify(response.data));
         let response = responseObject.data;
 
         result = { response, error: false, errorMessage: null };
 
         console.log("thisIsResultBeforePrintToCharacter",result);
     }catch(error) {
-            result = { response: null, error: true, errorMessage: error.toString() };
-        };
+        result = { response: null, error: true, errorMessage: error.toString() };
+    };
 
     return result;
   };

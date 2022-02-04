@@ -31,6 +31,7 @@ class Characters extends React.Component {
       morepage: false,
       totalPage: 1,
       isRefreshing: false,
+      limit:49,
     };
   }
 
@@ -46,69 +47,78 @@ class Characters extends React.Component {
     });
   };
 
-      
+  renderAlert = ()=>{
+ 
+    Alert.alert(
+      "Message",
+      "Coming Soon!!!",
+      [
+        
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    );
+
+  }
   
 
   
   loadCharacter = async(type) =>{
 
+    if(this.state.limit<=50){
 
-    console.log("SizeOfArray",this.state.users.length);
-    console.log("MyTypeIsHere",type);
-    this.setState({ characterLoading: true,dataloading: true });
-    
-    console.log("insideLoadCharacter");
-    let url = "";
-    if(type == "initial" || type == "refresh"){
-        url = Config.base_url+"characters?"+"limit=12&offset=0";
-    }else if(type == "loadmore"){
-        url = Config.base_url+"characters?"+"limit=50&offset=1";
-        
-    }
+      console.log("SizeOfArray",this.state.users.length);
+      console.log("MyTypeIsHere",type);
+      this.setState({ characterLoading: true,dataloading: true });
+      
+      console.log("insideLoadCharacter");
+      let url = "";
+      if(type == "initial" || type == "refresh"){
+          url = Config.base_url+"characters?"+"limit=12&offset=0";
+      }else if(type == "loadmore"){
+          url = Config.base_url+"characters?"+"limit=50&offset=1";
+      }
 
-    console.log("MyUselrlHere",url);
+      console.log("MyUselrlHere",url);
 
-    await fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "application/json",
-          Origin: "*",
-        },
-        
-      })
+      await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "application/json",
+            Origin: "*",
+          },
+          
+        })
         .then((response) => response.json())
         .then((response) => {
-          console.log("responsefromEndopint", JSON.stringify(response));
-          if (response.length<0) {
-            this.setState({ noData: true });
-          } else {
-
-            console.log("ThosIsThePageToLoad",this.state.page)
-            if (this.state.page == 1) {
-              this.setState({ users: response});
+            console.log("responsefromEndopint", JSON.stringify(response));
+            if (response.length<0) {
+              this.setState({ noData: true });
             } else {
-                if(type == "loadmore"){
 
-                    console.log("iAmLoadMoreComp")
-                    this.setState({
-                        users: [...this.state.users, ...response],
-                        isRefreshing:false,
-                    });
-                }
-            }            
-          }
-          this.setState({ dataloading: false });
-          this.setState({ loadingMore: false });
-          this.setState({ refreshing: false,isRefreshing: false, });
+              console.log("ThosIsThePageToLoad",this.state.page)
+              if (this.state.page == 1) {
+                this.setState({ users: response});
+              } else {
+                  if(type == "loadmore"){
+                      this.setState({
+                          users: [...this.state.users, ...response],
+                          isRefreshing:false,
+                      });
+                  }
+              }            
+            }
+            this.setState({ dataloading: false });
+            this.setState({ loadingMore: false });
+            this.setState({ refreshing: false,isRefreshing: false, });
         })
         .catch((error) => {
-          console.log("errormessage", error);
-          this.setState({ dataloading: false });
-          this.setState({ refreshing: false });
-          console.log("error", error);
+            console.log("errormessage", error);
+            this.setState({ dataloading: false });
+            this.setState({ refreshing: false });
+            console.log("error", error);
         });
-   
+    }
   }
 
   handleRefresh = () => {
@@ -128,6 +138,7 @@ class Characters extends React.Component {
     this.setState(
       {
         page: this.state.page + 1,
+        limit: this.state.limit+1
       },
       () => {
         
@@ -161,7 +172,7 @@ class Characters extends React.Component {
             <CardComponent
               key={item.id}
               name={item.name}
-              onPressButton= {this.onPressButton.bind(this, item.id)}
+              onPressButton= {this.renderAlert}
               occupation={item.occupation}
               image={item.img}
               status = {item.status}

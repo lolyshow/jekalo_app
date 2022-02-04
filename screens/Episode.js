@@ -37,7 +37,7 @@ class Episode extends React.Component {
   }
 
   componentDidMount() {
-    this.loadCharacter();
+    this.loadEpisode();
 }
 
 
@@ -52,7 +52,7 @@ class Episode extends React.Component {
   
 
   
-  loadCharacter = async() =>{
+  loadEpisode = async() =>{
 
     this.setState({ episodeLoading: true,dataloading: true });
     
@@ -101,25 +101,12 @@ class Episode extends React.Component {
       },
       () => {
         
-          this.loadCharacter("refresh");
+          this.loadEpisode("refresh");
       }
     );
   };
 
-  handleLoadMore = () => {
-    console.log("insideLoadMore");
-    this.setState(
-      {
-        page: this.state.page + 1,
-      },
-      () => {
-        
-          this.loadCharacter("loadmore");
-        
-      }
-    );
-  };
-
+  
   
 
   
@@ -136,7 +123,7 @@ class Episode extends React.Component {
               alignContent: "center",
               alignSelf: "center",
               alignItems: "center",
-              margin: 20,
+              marginTop:10,
             }}
           >
             <ListComp
@@ -146,7 +133,7 @@ class Episode extends React.Component {
               date= {item.air_date}
               episode={item.episode}
               character={item.characters}
-              
+              series = {item.series}
             />
           </View>
         )}
