@@ -18,6 +18,7 @@ class CardComponent extends Component {
     return (
       <View key = {this.props.key}>
         <View
+          key = {this.props.key}
           style={{backgroundColor: "#f5f5f5",padding:10,borderRadius: 10,marginBottom: 0,height: 290,width: 300,
           }}
         >
@@ -45,10 +46,6 @@ class CardComponent extends Component {
           <Text>
                 <Text style={{fontWeight: "bold"}}>Category:</Text>
           <Text></Text>{this.props.category}</Text>
-
-          <Text>
-                <Text style={{fontWeight: "bold"}}>Series:</Text>
-          <Text></Text>{this.props.series}</Text>
           
         </View>
       </View>
