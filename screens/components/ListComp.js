@@ -23,10 +23,13 @@ class ListComp extends Component {
     
     return (
       <View>
-        <View style={{backgroundColor: "#f5f5f5",borderRadius: 10,marginBottom: 0,height: 100,width: 300,
+        <View style={{backgroundColor: "#ffffff",borderRadius: 10, padding:10,height: 150,width: 300,
           }}
         >
-            <Text>Title: {this.props.title}</Text>
+            <Text>
+              <Text style={{fontWeight: "bold"}}>Title:</Text>
+            <Text> </Text>{this.props.title}</Text>
+
             <Text>
                 <Text style={{fontWeight: "bold"}}>Season:</Text>
             <Text> </Text> {this.props.season}</Text>
